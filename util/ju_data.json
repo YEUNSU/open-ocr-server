@@ -1,0 +1,818 @@
+{ "juArray" : [
+    {
+    "imageFileName": "J_9011123_K210404.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "김동완",
+        "target_birth": "901113"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "허수희",
+        "target_birth": "911103"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "김윤우",
+        "target_birth": "210404"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B750927_K150617.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "홍정표",
+        "target_birth": "750927"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "권인혜",
+        "target_birth": "760223"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "홍예빈",
+        "target_birth": "150617"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "홍예은",
+        "target_birth": "170829"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B780516_K130322.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "노영근",
+        "target_birth": "780516"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "오현미",
+        "target_birth": "790909"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "노현준",
+        "target_birth": "130322"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B790314_K161006.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "차정로",
+        "target_birth": "790314"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "송은주",
+        "target_birth": "830125"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "차무겸",
+        "target_birth": "161006"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B790403_K120521.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "정윤호",
+        "target_birth": "790403"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "박하영",
+        "target_birth": "840822"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "정승민",
+        "target_birth": "120521"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "정지유",
+        "target_birth": "160221"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B790530_K130305.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "김동욱",
+        "target_birth": "790530"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "송은진",
+        "target_birth": "830221"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "김서진",
+        "target_birth": "130305"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B790828_K1480818.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "조윤호",
+        "target_birth": "790826"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "이신옥",
+        "target_birth": "830330"
+      },
+      {
+        "target_rel": "부",
+        "target_name": "조일환",
+        "target_birth": "480410"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "조규민",
+        "target_birth": "180816"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "조유준",
+        "target_birth": "21121"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B791203-K150225.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "송인호",
+        "target_birth": "791203"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "황가희",
+        "target_birth": "830712"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "송은성",
+        "target_birth": "150225"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "송은수",
+        "target_birth": "170420"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B810501_K120301.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "정대철",
+        "target_birth": "810501"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "채하나",
+        "target_birth": "850225"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "정재연",
+        "target_birth": "120301"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "정다연",
+        "target_birth": "160420"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B810618_K121120.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "김유리",
+        "target_birth": "810618"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "이동희",
+        "target_birth": "790519"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "이승호",
+        "target_birth": "121120"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B820205_K070619.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "송한나",
+        "target_birth": "820205"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "신용성",
+        "target_birth": "790223"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "이환",
+        "target_birth": "070619"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "이은별",
+        "target_birth": "101010"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "신주혜",
+        "target_birth": "161229"
+      },
+      {
+        "target_rel": "배우자의자녀",
+        "target_name": "신가윤",
+        "target_birth": "101208"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B820529_K150117.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "박규혁",
+        "target_birth": "820529"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "김혜정",
+        "target_birth": "870316"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "박민준",
+        "target_birth": "150117"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B830104_K160915.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "이호숙",
+        "target_birth": "830104"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "박철우",
+        "target_birth": "860415"
+      },
+      {
+        "target_rel": "자녀", 
+        "target_name": "박찬희",
+        "target_birth": "160913"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B830109_K110625.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "허성수",
+        "target_birth": "830109"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "황선영",
+        "target_birth": "800407"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "허은지",
+        "target_birth": "110625"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "허예준",
+        "target_birth": "160427"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B830502_K140702.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "안선재",
+        "target_birth": "830502"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "정미선",
+        "target_birth": "840606"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "안소희",
+        "target_birth": "140702"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "안준희",
+        "target_birth": "151119"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B840129_K210416.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "임환섭",
+        "target_birth": "840129"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "CHOMPOOWISET SABAITHIP",
+        "target_birth": "900504"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "임소율",
+        "target_birth": "210416"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "임소미",
+        "target_birth": "210416"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B840219_K180904.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "김민경",
+        "target_birth": "840219"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "이지훈",
+        "target_birth": "830119"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "이유건",
+        "target_birth": "180904"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B840412_K161020.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "신명수",
+        "target_birth": "840412"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "이완이",
+        "target_birth": "901001"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "신세민",
+        "target_birth": "161020"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B840914_K120527.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "정윤성",
+        "target_birth": "840914"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "김은혜",
+        "target_birth": "850717"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "정한길",
+        "target_birth": "120527"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "정예슬",
+        "target_birth": "140215"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "정예한",
+        "target_birth": "201120"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B841003_K200828.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "황성태",
+        "target_birth": "841003"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "전아름",
+        "target_birth": "860425"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "황예슬",
+        "target_birth": "200828"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B850624_K150510.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "임수미",
+        "target_birth": "850624"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "최윤호",
+        "target_birth": "700719"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "최지아",
+        "target_birth": "150510"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B850821_K211130.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "김태영",
+        "target_birth": "850821"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "김보성",
+        "target_birth": "861226"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "김주원",
+        "target_birth": "211130"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B850829_K190102.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "이재명",
+        "target_birth": "850829"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "정상미",
+        "target_birth": "840416"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "이시호",
+        "target_birth": "190102"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B850918_K211012.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "이정현",
+        "target_birth": "850918"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "김기영",
+        "target_birth": "900318"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "이선오",
+        "target_birth": "211012"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B860927_K210715.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "송원섭",
+        "target_birth": "860927"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "서은지",
+        "target_birth": "860202"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "송치호",
+        "target_birth": "210715"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B870926_K210819.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "한진기",
+        "target_birth": "870926"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "김미향",
+        "target_birth": "880615"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "한재림",
+        "target_birth": "210819"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B880105_K211206.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "이재훈",
+        "target_birth": "880105"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "김지연",
+        "target_birth": "870703"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "이도윤",
+        "target_birth": "211206"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B880127_K210519.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "주정우",
+        "target_birth": "880127"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "신혜림",
+        "target_birth": "870503"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "주서진",
+        "target_birth": "210519"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B880128_K210416.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "정희욱",
+        "target_birth": "880128"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "윤수미",
+        "target_birth": "891015"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "정새봄",
+        "target_birth": "210416"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B880609_K000000.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "박현민",
+        "target_birth": "880609"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "최미진",
+        "target_birth": "900720"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B890224_K120516.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "유영만",
+        "target_birth": "890224"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "최예영",
+        "target_birth": "880606"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "유시우",
+        "target_birth": "120516"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "유지우",
+        "target_birth": "170117"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B890413_K140804.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "김성수",
+        "target_birth": "890413"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "신현정",
+        "target_birth": "940622"
+      },
+      {
+        "target_rel": "모",
+        "target_name": "홍길표",
+        "target_birth": "550410"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "김라희",
+        "target_birth": "140804"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "김영호",
+        "target_birth": "160222"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "김영웅",
+        "target_birth": "210113"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B890414_K210427.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "최은혜",
+        "target_birth": "890414"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "전병진",
+        "target_birth": "890322"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "전수아",
+        "target_birth": "210427"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B890511_K201125.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "김미향",
+        "target_birth": "890511"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "김은호",
+        "target_birth": "870610"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "김수호",
+        "target_birth": "201125"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B891001_K210316.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "강진우",
+        "target_birth": "891001"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "김현진",
+        "target_birth": "920703"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "강민채",
+        "target_birth": "210316"
+      }
+    ]
+  },
+  {
+    "imageFileName": "J_B800320_K130713.jpg",
+    "resultArray": [
+      {
+        "target_rel": "본인",
+        "target_name": "차기복",
+        "target_birth": "800320"
+      },
+      {
+        "target_rel": "배우자",
+        "target_name": "김미혜",
+        "target_birth": "870304"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "차시후",
+        "target_birth": "130713"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "차시율",
+        "target_birth": "150805"
+      },
+      {
+        "target_rel": "자녀",
+        "target_name": "차시은",
+        "target_birth": "171127"
+      }
+    ]
+  }
+]
+}

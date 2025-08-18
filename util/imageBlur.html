@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 블러 처리 프로그램</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .container {
+            width: 768px;
+            height: 1024px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            height: 7%;
+            min-height: 60px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .header button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-success {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #229954;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #e67e22;
+        }
+
+        .header input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 100px;
+        }
+
+        .header input[type="file"] {
+            display: none;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .header-right {
+            position: absolute;
+            bottom: 5px;
+            right: 20px;
+            font-size: 12px;
+            color: #bdc3c7;
+            font-weight: normal;
+        }
+
+        .content {
+            height: 93%;
+            position: relative;
+            background-color: #ecf0f1;
+            overflow: auto;
+            flex: 1;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            cursor: crosshair;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: auto;
+        }
+
+        .placeholder {
+            color: #7f8c8d;
+            font-size: 18px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .blur-overlay {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 4px;
+            -webkit-backdrop-filter: blur(var(--blur-intensity, 10px));
+            backdrop-filter: blur(var(--blur-intensity, 10px));
+        }
+
+        .selection-box {
+            position: absolute;
+            border: 2px dashed #3498db;
+            background: rgba(52, 152, 219, 0.1);
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container" :style="containerStyle">
+            <!-- 상단 헤더 영역 (7%) - 고정 -->
+            <div class="header">
+                <div class="header-left">
+                    <input 
+                        type="file" 
+                        ref="fileInput" 
+                        @change="loadImage" 
+                        accept=".gif,.jpg,.jpeg,.png,.tif,.tiff"
+                        style="display: none;"
+                    >
+                    <button class="btn-primary" @click="$refs.fileInput.click()">
+                        불러오기
+                    </button>
+                    <button class="btn-success" @click="saveImage" :disabled="!imageLoaded">
+                        저장
+                    </button>
+
+                    <div>
+                        <label>블러:</label>
+                        <input 
+                            type="number" 
+                            v-model="blurIntensity" 
+                            min="1" 
+                            max="50" 
+                            placeholder="블러"
+                        >
+                    </div>
+                    <button class="btn-warning" @click="undoLastBlur" :disabled="blurHistory.length === 0">
+                        되돌리기 ({{ blurHistory.length }})
+                    </button>
+                </div>
+                <div class="header-right">
+                    Created By IT_개발파트
+                </div>
+            </div>
+
+            <!-- 하단 콘텐츠 영역 (93%) - 스크롤 가능 -->
+            <div class="content">
+                <div v-if="!imageLoaded" class="placeholder">
+                    이미지를 불러와주세요
+                </div>
+                <div v-else class="image-container" 
+                     @mousedown="startSelection" 
+                     @mousemove="updateSelection" 
+                     @mouseup="endSelection"
+                     @dragstart.prevent
+                     @selectstart.prevent>
+                    <img 
+                        :src="imageSrc" 
+                        ref="imageElement"
+                        @load="onImageLoad"
+                        @dragstart.prevent
+                        @selectstart.prevent
+                        draggable="false"
+                    >
+                    <!-- 블러 오버레이들 -->
+                    <div 
+                        v-for="(blur, index) in activeBlurs" 
+                        :key="index"
+                        class="blur-overlay"
+                        :style="getBlurStyle(blur)"
+                    ></div>
+                    <!-- 현재 선택 영역 -->
+                    <div 
+                        v-if="isSelecting && currentSelection"
+                        class="selection-box"
+                        :style="getSelectionStyle()"
+                    ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    imageSrc: null,
+                    imageLoaded: false,
+                    originalFileName: '',
+                    blurIntensity: 3,
+                    activeBlurs: [],
+                    blurHistory: [],
+                    isSelecting: false,
+                    currentSelection: null,
+                    imageWidth: 0,
+                    imageHeight: 0,
+                    containerWidth: 768,
+                    containerHeight: 1024,
+                    imageDisplayWidth: 0,
+                    imageDisplayHeight: 0,
+                    imageOffsetX: 0,
+                    imageOffsetY: 0
+                }
+            },
+            computed: {
+                containerStyle() {
+                    return {
+                        width: this.containerWidth + 'px',
+                        height: this.containerHeight + 'px'
+                    }
+                }
+            },
+            mounted() {
+                this.updateContainerSize();
+                window.addEventListener('resize', this.updateContainerSize);
+                
+                // 전역적으로 드래그 방지
+                document.addEventListener('dragstart', (e) => e.preventDefault());
+                document.addEventListener('selectstart', (e) => e.preventDefault());
+            },
+            beforeUnmount() {
+                window.removeEventListener('resize', this.updateContainerSize);
+            },
+            methods: {
+                updateContainerSize() {
+                    const container = document.querySelector('.container');
+                    if (container) {
+                        this.containerWidth = Math.max(768, window.innerWidth - 40);
+                        this.containerHeight = Math.max(1024, window.innerHeight - 40);
+                    }
+                },
+                loadImage(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        // 완전한 상태 초기화
+                        this.resetAllStates();
+                        
+                        this.originalFileName = file.name;
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            this.imageSrc = e.target.result;
+                            this.imageLoaded = true;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                },
+                
+                // 모든 상태를 초기화하는 메소드 추가
+                resetAllStates() {
+                    // 블러 관련 상태 초기화
+                    this.activeBlurs = [];
+                    this.blurHistory = [];
+                    
+                    // 선택 관련 상태 초기화
+                    this.isSelecting = false;
+                    this.currentSelection = null;
+                    
+                    // 이미지 관련 상태 초기화
+                    this.imageWidth = 0;
+                    this.imageHeight = 0;
+                    this.imageDisplayWidth = 0;
+                    this.imageDisplayHeight = 0;
+                    this.imageOffsetX = 0;
+                    this.imageOffsetY = 0;
+                    
+                    // 파일 입력 초기화 (같은 파일을 다시 선택할 수 있도록)
+                    if (this.$refs.fileInput) {
+                        this.$refs.fileInput.value = '';
+                    }
+                },
+                onImageLoad() {
+                    const img = this.$refs.imageElement;
+                    this.imageWidth = img.naturalWidth;
+                    this.imageHeight = img.naturalHeight;
+                    
+                    // 이미지가 화면에 표시되는 크기와 위치 계산
+                    this.$nextTick(() => {
+                        this.calculateImageDisplay();
+                    });
+                },
+                calculateImageDisplay() {
+                    const img = this.$refs.imageElement;
+                    const container = img.parentElement;
+                    
+                    if (!img || !container) return;
+                    
+                    const containerRect = container.getBoundingClientRect();
+                    const imgRect = img.getBoundingClientRect();
+                    
+                    this.imageDisplayWidth = imgRect.width;
+                    this.imageDisplayHeight = imgRect.height;
+                    this.imageOffsetX = imgRect.left - containerRect.left;
+                    this.imageOffsetY = imgRect.top - containerRect.top;
+                },
+                startSelection(event) {
+                    // 이미지나 컨테이너에서만 선택 시작
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    const rect = event.currentTarget.getBoundingClientRect();
+                    const x = event.clientX - rect.left;
+                    const y = event.clientY - rect.top;
+                    
+                    // 이미지 영역 내에서만 선택 시작
+                    if (this.isPointInImage(x, y)) {
+                        this.isSelecting = true;
+                        this.currentSelection = {
+                            startX: x,
+                            startY: y,
+                            endX: x,
+                            endY: y
+                        };
+                    }
+                },
+                updateSelection(event) {
+                    if (this.isSelecting && this.currentSelection) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        
+                        const rect = event.currentTarget.getBoundingClientRect();
+                        const x = event.clientX - rect.left;
+                        const y = event.clientY - rect.top;
+                        
+                        this.currentSelection.endX = x;
+                        this.currentSelection.endY = y;
+                    }
+                },
+                endSelection(event) {
+                    if (this.isSelecting && this.currentSelection) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        
+                        // 선택 영역이 최소 크기 이상인지 확인
+                        const width = Math.abs(this.currentSelection.endX - this.currentSelection.startX);
+                        const height = Math.abs(this.currentSelection.endY - this.currentSelection.startY);
+                        
+                        if (width >= 10 && height >= 10) {
+                            this.applyBlurToSelection();
+                        }
+                        
+                        this.isSelecting = false;
+                        this.currentSelection = null;
+                    }
+                },
+                isPointInImage(x, y) {
+                    return x >= this.imageOffsetX && 
+                           x <= this.imageOffsetX + this.imageDisplayWidth &&
+                           y >= this.imageOffsetY && 
+                           y <= this.imageOffsetY + this.imageDisplayHeight;
+                },
+                applyBlurToSelection() {
+                    const selection = this.currentSelection;
+                    const startX = Math.min(selection.startX, selection.endX);
+                    const startY = Math.min(selection.startY, selection.endY);
+                    const endX = Math.max(selection.startX, selection.endX);
+                    const endY = Math.max(selection.startY, selection.endY);
+                    
+                    // 이미지 좌표계로 변환
+                    const scaleX = this.imageWidth / this.imageDisplayWidth;
+                    const scaleY = this.imageHeight / this.imageDisplayHeight;
+                    
+                    const imageStartX = (startX - this.imageOffsetX) * scaleX;
+                    const imageStartY = (startY - this.imageOffsetY) * scaleY;
+                    const imageEndX = (endX - this.imageOffsetX) * scaleX;
+                    const imageEndY = (endY - this.imageOffsetY) * scaleY;
+                    
+                    const blur = {
+                        x: (imageStartX + imageEndX) / 2,
+                        y: (imageStartY + imageEndY) / 2,
+                        width: imageEndX - imageStartX,
+                        height: imageEndY - imageStartY,
+                        intensity: parseInt(this.blurIntensity)
+                    };
+                    
+                    this.activeBlurs.push(blur);
+                    this.blurHistory.push([...this.activeBlurs]);
+                },
+                getBlurStyle(blur) {
+                    // 화면 좌표계로 변환
+                    const scaleX = this.imageDisplayWidth / this.imageWidth;
+                    const scaleY = this.imageDisplayHeight / this.imageHeight;
+                    
+                    const displayX = (blur.x - blur.width / 2) * scaleX + this.imageOffsetX;
+                    const displayY = (blur.y - blur.height / 2) * scaleY + this.imageOffsetY;
+                    const displayWidth = blur.width * scaleX;
+                    const displayHeight = blur.height * scaleY;
+                    
+                    return {
+                        left: displayX + 'px',
+                        top: displayY + 'px',
+                        width: displayWidth + 'px',
+                        height: displayHeight + 'px',
+                        '--blur-intensity': `${blur.intensity}px`
+                    }
+                },
+                getSelectionStyle() {
+                    if (!this.currentSelection) return {};
+                    
+                    const startX = Math.min(this.currentSelection.startX, this.currentSelection.endX);
+                    const startY = Math.min(this.currentSelection.startY, this.currentSelection.endY);
+                    const width = Math.abs(this.currentSelection.endX - this.currentSelection.startX);
+                    const height = Math.abs(this.currentSelection.endY - this.currentSelection.startY);
+                    
+                    return {
+                        left: startX + 'px',
+                        top: startY + 'px',
+                        width: width + 'px',
+                        height: height + 'px'
+                    }
+                },
+                undoLastBlur() {
+                    if (this.blurHistory.length > 0) {
+                        this.blurHistory.pop();
+                        if (this.blurHistory.length > 0) {
+                            this.activeBlurs = [...this.blurHistory[this.blurHistory.length - 1]];
+                        } else {
+                            this.activeBlurs = [];
+                        }
+                    }
+                },
+                // 가우시안 블러 함수 추가
+                applyGaussianBlur(imageData, radius) {
+                    const pixels = imageData.data;
+                    const width = imageData.width;
+                    const height = imageData.height;
+                    
+                    // 가우시안 커널 생성
+                    const kernel = this.createGaussianKernel(radius);
+                    const kernelSize = kernel.length;
+                    const half = Math.floor(kernelSize / 2);
+                    
+                    // 임시 배열 생성
+                    const tempPixels = new Uint8ClampedArray(pixels);
+                    
+                    // 수평 블러
+                    for (let y = 0; y < height; y++) {
+                        for (let x = 0; x < width; x++) {
+                            let r = 0, g = 0, b = 0, a = 0;
+                            
+                            for (let i = 0; i < kernelSize; i++) {
+                                const px = Math.min(width - 1, Math.max(0, x + i - half));
+                                const idx = (y * width + px) * 4;
+                                const weight = kernel[i];
+                                
+                                r += tempPixels[idx] * weight;
+                                g += tempPixels[idx + 1] * weight;
+                                b += tempPixels[idx + 2] * weight;
+                                a += tempPixels[idx + 3] * weight;
+                            }
+                            
+                            const idx = (y * width + x) * 4;
+                            pixels[idx] = r;
+                            pixels[idx + 1] = g;
+                            pixels[idx + 2] = b;
+                            pixels[idx + 3] = a;
+                        }
+                    }
+                    
+                    // 수직 블러를 위해 다시 복사
+                    tempPixels.set(pixels);
+                    
+                    // 수직 블러
+                    for (let y = 0; y < height; y++) {
+                        for (let x = 0; x < width; x++) {
+                            let r = 0, g = 0, b = 0, a = 0;
+                            
+                            for (let i = 0; i < kernelSize; i++) {
+                                const py = Math.min(height - 1, Math.max(0, y + i - half));
+                                const idx = (py * width + x) * 4;
+                                const weight = kernel[i];
+                                
+                                r += tempPixels[idx] * weight;
+                                g += tempPixels[idx + 1] * weight;
+                                b += tempPixels[idx + 2] * weight;
+                                a += tempPixels[idx + 3] * weight;
+                            }
+                            
+                            const idx = (y * width + x) * 4;
+                            pixels[idx] = r;
+                            pixels[idx + 1] = g;
+                            pixels[idx + 2] = b;
+                            pixels[idx + 3] = a;
+                        }
+                    }
+                    
+                    return imageData;
+                },
+                
+                createGaussianKernel(radius) {
+                    const size = Math.ceil(radius * 2) * 2 + 1;
+                    const kernel = new Array(size);
+                    const sigma = radius / 3;
+                    const twoSigmaSquare = 2 * sigma * sigma;
+                    const sqrtTwoPiSigma = Math.sqrt(twoSigmaSquare * Math.PI);
+                    const half = Math.floor(size / 2);
+                    
+                    let sum = 0;
+                    for (let i = 0; i < size; i++) {
+                        const x = i - half;
+                        kernel[i] = Math.exp(-(x * x) / twoSigmaSquare) / sqrtTwoPiSigma;
+                        sum += kernel[i];
+                    }
+                    
+                    // 정규화
+                    for (let i = 0; i < size; i++) {
+                        kernel[i] /= sum;
+                    }
+                    
+                    return kernel;
+                },
+                saveImage() {
+                    if (!this.imageLoaded) return;
+                    
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    const img = this.$refs.imageElement;
+                    
+                    canvas.width = this.imageWidth;
+                    canvas.height = this.imageHeight;
+                    
+                    // 1. 원본 이미지 그리기
+                    ctx.drawImage(img, 0, 0, this.imageWidth, this.imageHeight);
+                    
+                    // 2. 직접 구현한 가우시안 블러 적용
+                    this.activeBlurs.forEach(blur => {
+                        const sx = Math.max(0, Math.floor(blur.x - blur.width / 2));
+                        const sy = Math.max(0, Math.floor(blur.y - blur.height / 2));
+                        const sw = Math.min(Math.ceil(blur.width), this.imageWidth - sx);
+                        const sh = Math.min(Math.ceil(blur.height), this.imageHeight - sy);
+
+                        if (sw <= 0 || sh <= 0) return;
+
+                        // ImageData 가져오기
+                        const imageData = ctx.getImageData(sx, sy, sw, sh);
+                        
+                        // 각 블러 객체의 고유한 강도 적용
+                        const blurRadius = blur.intensity * 4;
+                        console.log(`블러 적용: intensity=${blur.intensity}, radius=${blurRadius}`);
+                        // 가우시안 블러 적용
+                        this.applyGaussianBlur(imageData, blurRadius);
+                        
+                        // 블러 처리된 ImageData를 다시 캔버스에 적용
+                        ctx.putImageData(imageData, sx, sy);
+                    });
+                    
+                    // 3. 파일명 생성 및 이미지 다운로드
+                    const nameParts = this.originalFileName.split('.');
+                    const extension = nameParts.pop();
+                    const baseName = nameParts.join('.');
+                    const newFileName = `${baseName}_blur.${extension}`;
+
+                    const link = document.createElement('a');
+                    link.download = newFileName;
+                    link.href = canvas.toDataURL('image/png'); // PNG로 저장하여 품질 유지
+                    link.click();
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html> 
