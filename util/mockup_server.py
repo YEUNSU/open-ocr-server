@@ -28,8 +28,8 @@ if str(PARENT_DIR) not in sys.path:
 from models import ChildCreateRequest, JsonResponseModel  # 변경된 모델 임포트
 
 # --- 환경 설정 ---
-IMAGE_DIR = "/Users/basaaja/Python/ocr_image/temp/server_image"  # 이미지가 저장된 기본 폴더 경로
-LOG_DIR_STR = "/Users/basaaja/Python/openocr_log_mockup" # 2025-05-11 14:40:00 수신된 최종 결과 JSON 저장 경로 변수명 명확화 (기존 LOG_DIR 에서 LOG_DIR_STR로 변경)
+IMAGE_DIR = "../ocr_image/temp/server_image"  # Windows 환경에 맞게 상대 경로로 수정
+LOG_DIR_STR = "../openocr_log_mockup" # Windows 환경에 맞게 상대 경로로 수정
 
 LOG_FILE_PATH = "image_server.log" # 로그 파일 경로
 
